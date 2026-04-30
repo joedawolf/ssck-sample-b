@@ -145,12 +145,28 @@
   .hero-anim > *:nth-child(2){ animation-delay: .35s; }
   .hero-anim > *:nth-child(3){ animation-delay: .6s; }
   /* Hero sentence word-by-word stagger */
-  .hero-anim > h1 { opacity: 1 !important; animation: none !important; }
-  .hero-word { display: inline; opacity: 0; animation: fadeUp 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-anim h1 { opacity: 1 !important; animation: none !important; }
+  .hero-word { display: block; opacity: 0; animation: fadeUp 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
   .hero-word:nth-child(1){ animation-delay: .2s; }
   .hero-word:nth-child(2){ animation-delay: .6s; }
   .hero-word:nth-child(3){ animation-delay: 1.0s; }
   .hero-word:nth-child(4){ animation-delay: 1.4s; }
+
+  /* Mobile frost panel behind hero text */
+  .hero-frost {
+    position: relative;
+  }
+  @media (max-width: 767px) {
+    .hero-frost {
+      background: rgba(14,26,51,0.55);
+      backdrop-filter: blur(12px) saturate(1.4);
+      -webkit-backdrop-filter: blur(12px) saturate(1.4);
+      border: 1px solid rgba(197,151,59,0.15);
+      border-radius: 4px;
+      padding: 28px 24px;
+      margin-top: 40px;
+    }
+  }
 
   /* Card hover */
   .practice-card { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease-out; }
@@ -344,7 +360,8 @@
 <!-- ============== HERO ============== -->
 <section class="relative w-full overflow-hidden grain" style="height: 88vh; min-height: 680px;">
   <img src="reference/images/hero-bg-1.jpg" alt="Sachs Sax Caplan Kaskel office" class="absolute inset-0 w-full h-full object-cover object-center" />
-  <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 10%, rgba(14,26,51,0.35) 40%, rgba(14,26,51,0.6) 60%, rgba(14,26,51,0.85) 100%);"></div>
+  <div class="absolute inset-0 hidden md:block" style="background: linear-gradient(to bottom, transparent 10%, rgba(14,26,51,0.35) 40%, rgba(14,26,51,0.6) 60%, rgba(14,26,51,0.85) 100%);"></div>
+  <div class="absolute inset-0 md:hidden" style="background: linear-gradient(to bottom, transparent 5%, rgba(14,26,51,0.25) 30%, rgba(14,26,51,0.5) 50%, rgba(14,26,51,0.8) 80%, rgba(14,26,51,0.92) 100%);"></div>
 
   <!-- Editorial corner labels -->
   <div class="absolute top-8 left-5 md:left-10 lg:left-20 flex items-center gap-4 text-[10px] tracking-widest-2 uppercase font-medium">
@@ -363,15 +380,17 @@
     <div class="w-px bg-gold/50 flex-1"></div>
   </div>
 
-  <div class="relative h-full max-w-9xl mx-auto px-5 md:px-10 lg:px-20 flex items-center">
+  <div class="relative h-full max-w-9xl mx-auto px-5 md:px-10 lg:px-20 flex items-end md:items-center pb-16 md:pb-0">
     <div class="hero-anim max-w-5xl">
       <!-- Hero sentence -->
+      <div class="hero-frost">
       <h1 class="font-serif font-light text-paper" style="font-size: clamp(24px, 2.8vw, 40px); line-height: 1.4; letter-spacing: -0.01em;">
         <span class="hero-word">Attorneys at law.</span>
         <span class="hero-word">Board-certified counsel</span>
         <span class="hero-word">for Florida's most consequential matters,</span>
         <span class="hero-word italic text-gold-light">from the boardroom to the courtroom.</span>
       </h1>
+      </div>
 
       <!-- Practice strip -->
       <div class="hidden md:flex flex-wrap items-center gap-x-3 gap-y-2 mt-8 text-paper/85 text-[11px] tracking-widest-2 uppercase font-semibold">
